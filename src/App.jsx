@@ -6,11 +6,17 @@ const buttonsClases = "btn btn-primary w-75";
 function App() {
   const [screen, setScreen] = useState('0')
 
-  const handleButtonClick= ()=> {
+  const handleButtonClick= (e)=> {
+    const {value}= e.target;
+    if(value === 'C'){
+      setScreen('0')
+      return;
+    }
+
     if (screen === '0'){
-      setScreen(9)
+     setScreen(value)
     }else{
-      setScreen(`${screen}9`)
+     setScreen(`${screen}${value}`)
     }
   }
 
@@ -33,8 +39,10 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonsClases}>
-              C
+              className={buttonsClases}
+              value="C"
+              onClick={(e)=> handleButtonClick(e)} 
+              >C
             </button>
           </td>
           <td>
@@ -61,19 +69,24 @@ function App() {
           <td>
             <button type='button'
               className={buttonsClases}
+              value="7"
+              onClick={(e)=> handleButtonClick(e)}
               >7
             </button>
           </td>
           <td>
             <button type='button'
               className={buttonsClases}
+              value="8"
+              onClick={(e)=> handleButtonClick(e)}
               >8
             </button>
           </td>
           <td>
             <button type='button'
               className={buttonsClases}
-              onClick={handleButtonClick}
+              value="9"
+              onClick={(e)=> handleButtonClick(e)}
              >9
             </button>
           </td>
@@ -90,20 +103,26 @@ function App() {
         <tr>
           <td>
             <button type='button'
-              className={buttonsClases}>
-              4
+              className={buttonsClases}
+              value="4"
+              onClick={(e)=> handleButtonClick(e)}
+              >4
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonsClases}>
-              5
+              className={buttonsClases}
+              value="5"
+              onClick={(e)=> handleButtonClick(e)}
+              >5
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonsClases}>
-              6
+              className={buttonsClases}
+              value="6"
+              onClick={(e)=> handleButtonClick(e)}
+              >6
             </button>
           </td>
         </tr>
@@ -112,18 +131,25 @@ function App() {
           <td>
             <button type='button'
               className={buttonsClases}
+              value="1"
+              onClick={(e)=> handleButtonClick(e)}
               >1
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonsClases}>
-              2
+              className={buttonsClases}
+              value="2"
+              onClick={(e)=> handleButtonClick(e)}
+              >2
             </button>
           </td>
           <td>
             <button type='button'
-              className={buttonsClases}>
+              className={buttonsClases}
+              value="3"
+              onClick={(e)=> handleButtonClick(e)}
+              >
               3
             </button>
           </td>
@@ -148,6 +174,8 @@ function App() {
             <button 
             type="button"
             className={buttonsClases}
+            value="9"
+            onClick={(e)=> handleButtonClick(e)}
             >0</button>
           </td>
           <td>
