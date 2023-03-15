@@ -8,16 +8,27 @@ function App() {
 
   const handleButtonClick= (e)=> {
     const {value}= e.target;
+    if (value==='.'){
+      if (screen.includes('.')) return;
+    }
     if(value === 'C'){
       setScreen('0')
       return;
     }
 
-    if (screen === '0'){
-     setScreen(value)
-    }else{
-     setScreen(`${screen}${value}`)
+    if (screen === '0' && value !=='.'){
+     setScreen(value);
+     return;
     }
+     setScreen(`${screen}${value}`);
+  }
+  const handleDelButtonClick = () =>{
+    if (screen.length===1){
+      setScreen('0')
+      return;
+    }
+    setScreen(screen.slice(0, -1));
+
   }
 
   return (
@@ -168,7 +179,8 @@ function App() {
             <button 
             type="button"
             className={buttonsClases}
-            >{'DEL'}</button>
+            onClick={handleDelButtonClick}
+            >DEL</button>
           </td>
           <td>
             <button 
@@ -182,6 +194,8 @@ function App() {
             <button 
             type="button"
               className={buttonsClases}
+              value="."
+              onClick={(e)=> handleButtonClick(e)}
             >.</button>
           </td>
         </tr>
