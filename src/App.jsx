@@ -4,7 +4,9 @@ import './App.css'
 const buttonsClases = "btn btn-primary w-75";
 
 function App() {
-  const [screen, setScreen] = useState('0')
+  const [number1, setNumber1] = useState('');
+  const [clearScreen, setClearScreen]=useState(false);
+  const [screen, setScreen] = useState('0');
 
   const handleButtonClick= (e)=> {
     const {value}= e.target;
@@ -15,19 +17,42 @@ function App() {
       setScreen('0')
       return;
     }
-
+    //!================================
+    console.log({number1});
+    if (clearScreen){
+      console.log('Cambia screen');
+      setScreen(value);
+      setClearScreen(false);
+      return;
+    }
     if (screen === '0' && value !=='.'){
      setScreen(value);
      return;
     }
      setScreen(`${screen}${value}`);
   }
+
+
   const handleDelButtonClick = () =>{
     if (screen.length===1){
-      setScreen('0')
+      setScreen('0');
       return;
     }
     setScreen(screen.slice(0, -1));
+  }
+
+  const handleOperationButtonClick = (e)=>{
+      const operator= e.target.value;
+      switch(operator){
+        case '+':
+          setNumber1(screen);
+          console.log('suma');
+
+          break;
+        default:
+          break;
+      }
+      setClearScreen(true);
 
   }
 
@@ -106,6 +131,8 @@ function App() {
             type="button"
             className={buttonsClases}
             style={{height: "80px"}}
+            value="+"
+            onClick={(e)=>handleOperationButtonClick(e)}
             >+
             </button>
           </td>
