@@ -4,6 +4,7 @@ import './App.css'
 const buttonsClases = "btn btn-primary w-75";
 
 function App() {
+  const [operator, setOperator]= useState('');
   const [number1, setNumber1] = useState('');
   const [clearScreen, setClearScreen]=useState(false);
   const [screen, setScreen] = useState('0');
@@ -42,18 +43,24 @@ function App() {
   }
 
   const handleOperationButtonClick = (e)=>{
-      const operator= e.target.value;
-      switch(operator){
-        case '+':
+      setOperator(e.target.value);
           setNumber1(screen);
-          console.log('suma');
+          setClearScreen(true);
 
-          break;
+  }
+
+  const handleEqualButtonClick = () =>{
+    const a = +number1;
+    const b = +screen;
+    switch (operator) {
+      case '+':
+        setScreen((a + b).toString());
+        break;
+
         default:
-          break;
-      }
-      setClearScreen(true);
-
+        break;
+        
+    }
   }
 
   return (
@@ -195,6 +202,7 @@ function App() {
             <button type="button"
             className={buttonsClases}
             style={{height: "80px"}}
+            onClick={handleEqualButtonClick}
             >
               =
             </button>
